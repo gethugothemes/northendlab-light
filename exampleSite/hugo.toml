@@ -1,0 +1,73 @@
+# DON'T REMOVE THIS FILE.
+# This file is for render site varibles and plugins
+#
+# The actual configuration files are stored in the `config/_default/` folder.
+
+
+######################### site variables ##############################
+# customize your color and font from here.
+[params.variables]
+color_primary = "#E8505B"
+color_secondary = "#9AC4F8"
+body_color = "#fff"
+text_color = "#666666"
+text_dark = "#222222"
+border_color = "#ACB9C4"
+black = "#000"
+white = "#fff"
+dark = "#222"
+light = "#F8F8F8"
+
+# font variables
+# base font size for full website, 
+font_size = "16px" # default is 16px
+
+# Font Scale Sizes
+# "minorSecond": 1.067,
+# "majorSecond": 1.125,
+# "minorThird": 1.2,
+# "majorThird": 1.25,
+# "perfectFourth": 1.333,
+# "augmentedFourth": 1.414,
+# "perfectFifth": 1.5,
+# "goldenRatio": 1.618
+font_scale = "1.17" # default is "majorThird": 1.25
+
+# go to https://fonts.google.com/ to find the font you want to use. select your font and copy only the bold part from the URL. and paste it here.
+# example: "Work+Sans:wght@400;500;600"
+font_primary = "PT Sans:wght@400;700"
+font_primary_type = "sans-serif"            # [serif/sans-serif]
+font_secondary = ""
+font_secondary_type = ""                    # [serif/sans-serif]
+font_icon = "Font Awesome 6 Free"           # https://fontawesome.com/v6/icons
+
+
+############################# Plugins ##############################
+
+# CSS Plugins
+[[params.plugins.css]]
+link = "plugins/swiper/swiper-bundle.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/v6/brands.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/v6/solid.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/v6/icons.css" 
+[[params.plugins.css]]
+link = "plugins/glightbox/glightbox.css"
+
+# JS Plugins
+# [[params.plugins.js]]
+# link = "plugins/jquery/jquery.js"
+[[params.plugins.js]]
+link = "plugins/swiper/swiper-bundle.js"
+[[params.plugins.js]]
+link = "plugins/glightbox/glightbox.js"
+[[params.plugins.js]]
+link = "js/gallery-slider.js"
+[[params.plugins.js]]
+link = "plugins/webfont/webfont-loader-2.js"
+[[params.plugins.js]]
+link = "plugins/cookie.js"
+[[params.plugins.js]]
+link = "plugins/shuffle/shuffle.min.js"

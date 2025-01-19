@@ -1,16 +1,20 @@
 {{ define "main" }}
 
 <!-- banner -->
-<section class="banner bg-cover" style="background-image: url('{{ .Site.Params.banner.bgImage | relURL }}');">
-  <img src="{{ .Site.Params.banner.image | relURL }}" class="img-fluid illustration" alt="">
+<section class="banner bg-cover" {{ partial `bg-image.html` (dict `Src` .Params.banner.bg_image ) | safeHTMLAttr }}>
+  {{ if .Params.banner.image }}
+  {{ partial "image.html" (dict "Src" .Params.banner.image "Alt" .Title "Class" "illustration") }}
+  {{ end }}
   <div class="container">
     <div class="row">
       <div class="col-lg-6 mb-5 mb-lg-0">
-        <h1>{{ .Site.Params.banner.title | markdownify }}</h1>
+        <h1>{{ .Params.banner.title | markdownify }}</h1>
       </div>
-      <div class="col-lg-6 illustration-mobile">
-        <img src="{{ .Site.Params.banner.image | relURL }}" class="img-fluid" alt="">
+      {{ if .Params.banner.image }}
+      <div class="col-lg-5 illustration-mobile">
+        {{ partial "image.html" (dict "Src" .Params.banner.image "Alt" .Title) }}
       </div>
+      {{ end }}
     </div>
   </div>
 </section>
@@ -22,85 +26,9 @@
     <div class="row">
       <div class="col-lg-8 mx-auto px-0">
         <div class="bg-white shadow block">
-          {{ $paginator := .Paginate (where .Site.RegularPages "Type" "post") }}
-          {{ range $paginator.Pages }}
+          {{ range where site.RegularPages "Section" "in" site.Params.mainSections }}
           {{ .Render "article" }}
           {{ end }}
-          <!-- pagination -->
-          <div class="mt-5">
-            {{"<!-- pagination -->" | safeHTML }}
-            {{ $paginator := .Paginator }}
-            <!-- Number of links either side of the current page. -->
-            {{ $adjacent_links := 2 }}
-            <!-- $max_links = ($adjacent_links * 2) + 1 -->
-            {{ $max_links := (add (mul $adjacent_links 2) 1) }}
-            <!-- $lower_limit = $adjacent_links + 1 -->
-            {{ $lower_limit := (add $adjacent_links 1) }}
-            <!-- $upper_limit = $paginator.TotalPages - $adjacent_links -->
-            {{ $upper_limit := (sub $paginator.TotalPages $adjacent_links) }}
-            <!-- If there's more than one page. -->
-            {{ if gt $paginator.TotalPages 1 }}
-            <nav aria-label="Page navigation">
-              <ul class="pagination justify-content-center align-items-center">
-                <!-- Previous page. -->
-                {{ if $paginator.HasPrev }}
-                <li class="page-item">
-                  <a href="{{ $paginator.Prev.URL }}" class="page-link">
-                    &laquo;
-                  </a>
-                </li>
-                {{ end }}
-                <!-- Page numbers. -->
-                {{ range $paginator.Pagers }}
-                {{ $.Scratch.Set "page_number_flag" false }}
-                <!-- Advanced page numbers. -->
-                {{ if gt $paginator.TotalPages $max_links }}
-                <!-- Lower limit pages. -->
-                <!-- If the user is on a page which is in the lower limit.  -->
-                {{ if le $paginator.PageNumber $lower_limit }}
-                <!-- If the current loop page is less than max_links. -->
-                {{ if le .PageNumber $max_links }}
-                {{ $.Scratch.Set "page_number_flag" true }}
-                {{ end }}
-                <!-- Upper limit pages. -->
-                <!-- If the user is on a page which is in the upper limit. -->
-                {{ else if ge $paginator.PageNumber $upper_limit }}
-                <!-- If the current loop page is greater than total pages minus $max_links -->
-                {{ if gt .PageNumber (sub $paginator.TotalPages $max_links) }}
-                {{ $.Scratch.Set "page_number_flag" true }}
-                {{ end }}
-                <!-- Middle pages. -->
-                {{ else }}
-                {{ if and ( ge .PageNumber (sub $paginator.PageNumber $adjacent_links) ) ( le .PageNumber (add $paginator.PageNumber $adjacent_links) ) }}
-                {{ $.Scratch.Set "page_number_flag" true }}
-                {{ end }}
-                {{ end }}
-                <!-- Simple page numbers. -->
-                {{ else }}
-                {{ $.Scratch.Set "page_number_flag" true }}
-                {{ end }}
-                <!-- Output page numbers. -->
-                {{ if eq ($.Scratch.Get "page_number_flag") true }}
-                <li class="page-item{{ if eq . $paginator }} page-item active {{ end }}">
-                  <a href="{{ .URL }}" class="page-link">
-                    {{ .PageNumber }}
-                  </a>
-                </li>
-                {{ end }}
-                {{ end }}
-                <!-- Next page. -->
-                {{ if $paginator.HasNext }}
-                <li class="page-item">
-                  <a href="{{ $paginator.Next.URL }}" class="page-link">
-                    &raquo;
-                  </a>
-                </li>
-                {{ end }}
-              </ul>
-            </nav>
-            {{ end }}
-            {{"<!-- /pagination -->" | safeHTML }}
-          </div>
         </div>
       </div>
     </div>
@@ -116,7 +44,8 @@
       <div class="col-lg-8 mx-auto">
         <div class="row shadow bg-white p-5">
           <div class="col-md-4 text-center text-md-left mb-4 mb-lg-0">
-            <img src="{{ .Site.Params.cta.image | relURL }}" class="mr-4" alt="..."></div>
+            <img src="{{ .Site.Params.cta.image | relURL }}" class="mr-4" alt="cta image">
+          </div>
           <div class="col-md-8 text-center text-md-left">
             <h3 class="mt-0">{{ .Site.Params.cta.title | markdownify }}</h3>
             <p>{{ .Site.Params.cta.description | markdownify }}</p>

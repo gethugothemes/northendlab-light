@@ -1,15 +1,12 @@
-<article class="mb-5">
-  <h2 class="h4"><a class="post-title" href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h2>
+<article class="post-item mb-4 pb-2">
+  <h2 class="h4 fw-normal"><a class="post-title" href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h2>
   <div class="mb-3 post-meta">
-    <a href="{{ `author/` | relLangURL }}{{ .Params.Author | urlize | lower }}/">{{ .Params.Author | title }}</a>,
-    {{ .PublishDate.Format "Jan 2, 2006" }}, {{ range .Params.Categories }}
-    <a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}/">{{ . | title }}</a>
+    <a href="{{ `author/` | absLangURL }}{{ .Params.Author | urlize | lower }}/">{{ .Params.Author | title }}</a> <span class="mx-1">|</span>
+    {{ .PublishDate.Format "Jan 2, 2006" }} <span class="mx-1">|</span> {{ range .Params.Categories }}
+    <a href="{{ `categories/` | absLangURL }}{{ . | urlize | lower }}/">{{ . | title }}</a>
     {{ end }}
   </div>
   <p>{{.Summary}}</p>
-  <div class="mb-3 post-meta">
-    {{range .Params.Tags }} <a href="{{ `tags/` | relLangURL}}{{ . | urlize | lower }}/">#{{ . | title }}</a>,  {{ end }}
-  </div>
-  <a href="{{ .Permalink }}" class="btn btn-sm btn-transparent pl-0">read more</a>
-  <div style="border: 1px #eee solid; margin:30px 0"></div>
+  <a href="{{ .Permalink }}" class="btn btn-sm btn-transparent ps-0">read more</a>
+  <div style="height: 1px;background-color: #acb9c456; margin-top:40px"></div>
 </article>

@@ -1,9 +1,6 @@
-/*  typography */
-@import url('https://fonts.googleapis.com/css?family=Muli:300,400,600,700&display=swap');
-
 body {
-  line-height: 1.5;
-  font-family: $primary-font;
+  line-height: 1.7;
+  font-family: $font-primary;
   -webkit-font-smoothing: antialiased;
   font-size: 15px;
   color: $text-color;
@@ -12,22 +9,21 @@ body {
 p, .paragraph {
   font-weight: 400;
   color: $text-color;
-  font-size: 18px;
-  line-height: 1.7;
-  font-family: $primary-font;
+  font-size: 16px;
+  font-family: $font-primary;
 }
 
-
 a {
-  color: $primary-color;
+  color: $text-color;
   &:hover{
-    color: $primary-color;
+    text-decoration: underline;
+    color: $color-primary;
   }
 }
 
 h1,h2,h3,h4,h5,h6 {
-  color: $text-color-dark;
-  font-family: $primary-font;
+  color: $text-dark;
+  font-family: $font-primary;
   font-weight: 600;
   line-height: 1.2;
   a{
@@ -39,24 +35,46 @@ h1,h2,h3,h4,h5,h6 {
 
 h1, .h1{
   font-size: 50px;
+  font-weight: 500;
+
+  @include tablet {
+    font-size: 40px;
+  }
 }
 
-h2, .h2{
-  font-size: 40px;
-}
+// List in descending order to prevent extra sort function
+$type-levels: 6, 5, 4, 3, 2;
 
-h3, .h3{
-  font-size: 30px;
-}
+@each $level in $type-levels {
+  $font-size: $font-size * $font-scale;
 
-h4, .h4{
-  font-size: 26px;
-}
+  // Output heading styles
+  h#{$level},
+  .h#{$level} {
+    font-size: $font-size;
+    line-height: calc(2px + 2ex + 2px);
+    margin-bottom: 0.65em;
 
-h5, .h5{
-  font-size: 20px;
-}
+    // responsive for h1, h2, h3, h4
+    &:not(h5, .h5, h6, .h6) {
+      @include desktop {
+        font-size: calc(#{$font-size} * 0.9);
+        margin-bottom: 0.55em;
+      }
 
-h6, .h6{
-  font-size: 16px;
+      @include tablet {
+        font-size: calc(#{$font-size} * 0.8);
+      }
+    }
+
+    // responsive for h5, h6
+    @include desktop {
+      font-size: calc(#{$font-size} * 0.95);
+      margin-bottom: 0.55em;
+    }
+
+    @include tablet {
+      font-size: calc(#{$font-size} * 0.9);
+    }
+  }
 }

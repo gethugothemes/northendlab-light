@@ -52,18 +52,47 @@ Priority Support                                         | ![](https://demo.geth
 Get It Now          | [![download-light](https://demo.gethugothemes.com/icons/download.png)](https://github.com/gethugothemes/northendlab-light/archive/refs/heads/master.zip)         | [![download](https://demo.gethugothemes.com/icons/grab.png)](https://gethugothemes.com/products/northendlab/?ref=github)
 
 
+
+### Prerequisites
+
+To contribute effectively, you'll need some prerequisites installed on your machine:
+
+- **Hugo Extended v0.140+**: [[https://gohugo.io/installation/](https://gohugo.io/installation/)]
+- **Node v18+**: [[https://nodejs.org/en/download/](https://nodejs.org/en/download/)]
+- **Go v1.22+**: [[https://go.dev/doc/install](https://go.dev/doc/install)]
+
+
 ## 🔧Local development
 
+### Clone the repository
+
 ```bash
-# clone the repository
 git clone git@github.com:gethugothemes/northendlab-light.git
-
-# cd in the project directory
-$ cd northendlab-light/exampleSite/
-
-# Start local dev server
-$ hugo server --themesDir ../..
 ```
+
+### Project Setup
+
+```bash
+$ npm run project-setup
+
+```
+
+### Install Dependencies
+
+Install all the necessary dependencies using the following command:
+
+```bash
+npm install
+```
+
+### Development Command
+
+Start the development server using the following command:
+
+```bash
+npm run dev
+```
+
 Or Check out [Full Documentation](https://docs.gethugothemes.com/Northendlab/?ref=github).
 
 

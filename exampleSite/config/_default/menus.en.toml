@@ -1,0 +1,36 @@
+############# English navigation ##############
+
+# main menu
+[[main]]
+name = "Home"
+url = "" # don't use a slash for home url
+weight = 1
+hasChildren = true
+
+[[main]]
+name = "Contact"
+url = "contact/"
+weight = 2
+
+[[main]]
+name = "Buy Premium"
+url = "https://gethugothemes.com/products/northendlab/"
+weight = 3
+ 
+
+[[main]]
+name = "Tools"
+url = "tools/"
+weight = 4
+
+# Footer Menu 
+
+[[footer]]
+name = "Contact"
+url = "contact/"
+weight = 1
+
+[[footer]]
+name = "Tools"
+url = "tools/"
+weight = 2

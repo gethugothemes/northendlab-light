@@ -3,29 +3,44 @@
 <section class="section">
   <div class="container">
     <div class="row">
-      <div class="col-3">
-        <div class="nav nav-tab flex-column" role="tablist" aria-orientation="vertical">
-          {{ range $index, $elemen:= .Site.Data.tools.tools }}
-          <a class="nav-link {{ if eq $index 0}} active {{ end }}" data-toggle="pill" href="#{{.title | urlize}}" role="tab">{{ .title }}</a>
-          {{ end }}
+      <div class="col-md-3 mb-4 mb-md-0">
+        <div class="position-sticky" style="top:110px">
+          <div class="tools-filter-btn btn-group btn-group-toggle justify-content-center d-flex flex-column"
+            data-bs-toggle="buttons">
+            <label class="btn active mb-2 text-start">
+              <input type="radio" name="shuffle-filter" value="all" checked="checked" />All Tools
+            </label>
+            {{ $categories := slice }}
+            {{ range .Data.Pages }}
+            {{ range .Params.categories }}
+            {{ $categories = $categories | append . }}
+            {{ end }}
+            {{ end }}
+            {{ range ( $categories | uniq ) }}
+            <label class="btn mb-2 text-start">
+              <input type="radio" name="shuffle-filter" value="{{ . | urlize }}" />{{ . }}
+            </label>
+            {{ end }}
+          </div>
         </div>
+
       </div>
-      <div class="col-9">
-        <div class="tab-content">
-          {{ range $index, $elemen:= .Site.Data.tools.tools }}
-          <div class="tab-pane fade {{ if eq $index 0}} show active {{ end }}" id="{{.title | urlize}}" role="tabpanel">
-            <div class="row">
-              {{ range .tool}}
-              <div class="col-md-6 mb-4">
-                <div class="card border-0 shadow">
-                  <img src="{{ .image | relURL }}" alt="{{ .name | markdownify }}" class="card-img-top">
-                  <div class="card-body">
-                    <h4 class="h5 mb-4"><a class="text-dark" href="{{ .link | safeURL }}">{{ .name | markdownify }}</a></h4>
-                    <a href="{{ .link | safeURL }}" class="btn btn-primary">Visit Site</a>
-                  </div>
-                </div>
+      <div class="col-md-9">
+        <div class="row shuffle-wrapper">
+          {{ range .Data.Pages }}
+          <div class="col-lg-6 mb-4 pb-2 shuffle-item"
+            data-groups="[{{range $index, $element:= .Params.categories }}{{if ne $index 0}},{{end}}&quot;{{. | urlize}}&quot;{{ end }}]">
+            <div class="card border-0 shadow">
+              <a href="{{ .Permalink }}" aria-label="{{ .Params.description }}">
+                {{ partial "image.html" (dict "Src" .Params.thumbnail "Alt" "thumbnail-image" "Class" `card-img-top`) }}
+              </a>
+              <div class="card-body">
+                <h4 class="mb-3"><a class="text-dark" href="{{ .Permalink }}" aria-label="{{ .Params.description }}">{{
+                    .Params.title }}</a></h4>
+                <p class="mb-2">{{ .Params.description | truncate 90 }}</p>
+                <a href="{{ .Permalink }}" class="btn btn-transparent" aria-label="{{ .Params.description }}">Read
+                  More</a>
               </div>
-              {{ end }}
             </div>
           </div>
           {{ end }}

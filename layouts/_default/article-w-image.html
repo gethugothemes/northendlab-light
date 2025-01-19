@@ -1,0 +1,21 @@
+<article class="article-overlapped-list post-item row align-items-center mb-5">
+  {{ if .Params.image }}
+  <div class="col-md-6">
+    <a href="{{ .Permalink }}">
+      {{ partial "image.html" (dict "Src" .Params.image "Alt" "post-image" "Class" "w-100") }}
+    </a>
+  </div>
+  {{ end }}
+  <div class="col-md-6">
+    <div class="card-block">
+      <h2 class="h4 fw-normal"><a class="post-title" href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h2>
+      <p>{{.Summary | truncate 100}}</p>
+      <div class="mt-3 post-meta">
+        <a href="{{ `author/` | absLangURL }}{{ .Params.Author | urlize | lower }}/">{{ .Params.Author | title }}</a> <span class="mx-1">|</span>
+        {{ .PublishDate.Format "Jan 2, 2006" }} <span class="mx-1">|</span> {{ range .Params.Categories }}
+        <a href="{{ `categories/` | absLangURL }}{{ . | urlize | lower }}/">{{ . | title }}</a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</article>

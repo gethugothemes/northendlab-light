@@ -1,0 +1,157 @@
+#################### default parameters ################################
+# favicon
+favicon = "images/favicon.png"
+# logo
+logo = "images/logo.svg"
+# use `px` or `x` with logo_width, example: "100px".
+# Note: logo_width is not work with .svg file
+logo_width = ""
+# if logo_webp set false, will not generate WEBP version of logo | default is true
+logo_webp = true
+# logo text will only show when logo is missing.
+logo_text = "northendlab"
+
+# purgeCSS
+purge_css = true
+
+# search
+header_search_layout = "expanded" # "expanded" or "popupable"
+search = true
+
+# Menu align *** "left", "right" or "center" (if Search is disable Menu will align in Right) ***
+menu_align = "center"
+
+# Blog-details page sidebar
+sidebar = "right" # Sidebar value ("left", "right" or false)
+
+# Main Sections
+mainSections = ["posts"]
+
+# contact form action
+contact_form_action = "#" # contact form works with [https://airform.io/] or [https://formspree.io]
+
+# google tag manager, see https://developers.google.com/tag-manager/
+google_adsense = "" # example: ca-pub-xxxxxxxxxxxxxxxx
+google_tag_manager = "" # example: G-XXXXXXXXXX
+
+# custom script on header, example: custom_script= "<script>console.log(\"Hello World\")</script>"
+custom_script = ""
+
+# copyright
+copyright = "&copy; 2025 [Gethugothemes](https://gethugothemes.com) All Rights Reserved"
+theme_copyright = true
+
+# Preloader
+[preloader]
+enable = false 
+preloader = "" # use jpg, png, svg or gif format.
+
+# contact info
+[contact_info]
+address = "9567 Turner Trace Apt. BC C3G8A4"
+email = "info@email.com"
+mobile = "+211234565523"
+
+# Crisp Chat
+[crisp_chat]
+crisp_website_id = "9aa449e1-9999-422a-938f-8567982eec6d" # replace this code with yours
+enable = false 
+# Check this video tutorial to get your crisp website ID - https://www.youtube.com/watch?v=nW5UX6iVdFc
+
+# Valine Comment
+[valine_comment]
+appId = "" # replace this code with yours [ex: QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI]
+appKey = "" # replace this code with yours [ex: WBmoGyJtbqUswvfLh6L8iEBr]
+enable = false 
+# language = "change language translation from `i18n`"
+avatar = "" # see : https://valine.js.org/en/avatar.html
+enableQQ = false # https://valine.js.org/en/configuration.html#enableQQ
+highlight = true # Code highlighting
+pageSize = 10 # will show 10 comments per page
+recordIP = true # Record reviewer IP.
+visitor = true 
+# serverURLs = "" # https://leancloud.your_website.com
+# Check Valine's official documentation here - https://valine.js.org/en/configuration.html
+
+# seo meta data for OpenGraph / Twitter Card
+[metadata]
+author = "Themefisher" 
+description = "This is meta description" 
+image = "images/favicon.png" # this image will be used as fallback if a page has no image of its own
+keywords = ["Boilerplate", "Hugo", "Themefisher", "GetHugoThemes"] 
+
+# matomo tracking: see https://matomo.org/
+[matomo]
+enable = false 
+id = "" # your matomo id
+url = "" # your matomo url
+
+# baidu analytics: see https://tongji.baidu.com/
+[baidu]
+analytics_id = "" # Your ID
+enable = false 
+
+# plausible analytics: see https://plausible.io/
+[plausible]
+domain = "" # yourdomain.com
+enable = false 
+
+# counter analytics: see https://counter.dev/setup.html
+[counter]
+enable = false 
+username = "" # your username
+
+# site verifications
+[site_verification]
+baidu = "" # Your verification code
+bing = "" # Your verification code
+facebook = "" # Your verification code
+google = "" # Your verification code
+mastodon = "" # Your verification code
+
+# cookies
+[cookies]
+enable = false
+expire_days = 2
+button = "I Accept"
+content = "This site uses cookies. By continuing to use this website, you agree to their use."
+
+######################## call to action ###############################
+[cta]
+enable = true
+image = "images/hugo-muscot.svg"
+title = "Get the best hugo templates"
+description = "Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus."
+[cta.button]
+enable = true
+label = "Visit Here"
+link = "https://gethugothemes.com/shop/"
+
+
+######################## sidebar widgets #########################
+[widgets]
+sidebar = [
+  "subscription",
+]
+# available widget : search,categories,tags,recent-post,about-me,featured-post,social,subscription
+
+############################# social site ########################
+[[social]]
+icon = "fab fa-facebook" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "https://www.facebook.com" 
+title = "facebook" 
+
+[[social]]
+icon = "fab fa-twitter" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "https://twitter.com" 
+title = "twitter" 
+
+[[social]]
+icon = "fab fa-github" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "https://github.com" 
+title = "github" 
+
+[[social]]
+icon = "fab fa-linkedin" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "https://www.linkedin.com" 
+title = "linkedin" 

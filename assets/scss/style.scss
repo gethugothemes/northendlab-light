@@ -1,15 +1,31 @@
-/*!------------------------------------------------------------------
-[MAIN STYLESHEET]
+// Color Variables
+{{ with site.Params.variables }}
+$color-primary: {{.color_primary | default "#777"}};
+$color-secondary: {{.color_secondary | default "#0AA8A7"}};
+$text-color: {{.text_color | default "#777"}};
+$text-dark: {{.text_dark | default "#222"}};
+$text-light: {{.text_light | default "#999"}};
+$body-bg: {{.body_color | default "$white"}};
+$border-color: {{.border_color | default "#ECECEC"}};
+$black: {{.black | default "#000"}};
+$white: {{.white | default "$white"}};
+$dark: {{.dark | default "#222"}};
+$light: {{.light | default "#EDF6F5"}};
 
-PROJECT:	Project Name
-VERSION:	Versoin Number
--------------------------------------------------------------------*/
 
-/*------------------------------------------------------------------
-[TABLE OF CONTENTS]
--------------------------------------------------------------------*/
+// Font Variables
+$font-size: {{.font_size | default "16px"}};
+$font-scale: {{.font_scale | default "1.25"}};
+$font-primary: '{{replace (replaceRE ":[ital,]*[ital@]*[wght@]*[0-9,;]+" "" .font_primary | default "Lato") "+" " "}}', {{.font_primary_type | default "sans-serif"}};
+$font-secondary: '{{replace (replaceRE ":[ital,]*[ital@]*[wght@]*[0-9,;]+" "" .font_secondary | default "Lato") "+" " "}}', {{.font_secondary_type | default "sans-serif"}};
+$font-icon: '{{.font_icon | default "Font Awesome 5 Free"}}';
+{{ end }}
 
-@import 'variables';
+@import 'templates/bootstrap';
+
+@import 'preloader';
+
+@import 'images';
 
 @import 'mixins';
 
@@ -19,6 +35,20 @@ VERSION:	Versoin Number
 
 @import 'common';
 
-@import 'templates/navigation.scss';
+@import 'templates/navigation';
 
-@import 'templates/main.scss';
+@import 'templates/main';
+
+@import 'templates/footer';
+
+@import 'notice';
+
+@import 'tabs';
+
+@import 'gallery';
+
+@import 'social-share';
+
+@import 'toc';
+
+@import 'custom';

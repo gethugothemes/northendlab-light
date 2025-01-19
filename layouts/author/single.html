@@ -4,7 +4,9 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mx-auto text-center block shadow">
-        <img src="{{ .Params.Image | relURL }}" alt="" class="img-fluid d-block mx-auto rounded-circle mb-4 author-thumb">
+        {{ with .Params.Image }}
+        {{ partial "image.html" (dict "Src" . "Alt" "Title"  "Class" "d-block mx-auto rounded-circle mb-4 author-thumb") }}
+        {{ end }}
         <h4>{{ .Title | markdownify }}</h4>
         <div class="content">
           {{ .Content }}
@@ -22,7 +24,7 @@
         <h2 class="mb-4">Posts by {{ .Title }}</h2>
         <div class="bg-white shadow block">
           {{ $name:= .Title }}
-          {{ range where .Site.RegularPages "Params.author" $name }}
+          {{ range where site.RegularPages "Params.author" $name }}
           {{ .Render "article" }}
           {{ end }}
         </div>

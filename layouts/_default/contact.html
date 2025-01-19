@@ -6,28 +6,30 @@
       <div class="col-lg-5">
         <h2 class="mb-4">{{ .Title | markdownify }}</h2>
         <div class="content">{{ .Content }}</div>
-        <form method="POST" action="{{ .Site.Params.contact_form_action | safeURL}}" class="row">
+        <form method="POST" action="{{ site.Params.contact_form_action | safeURL}}" class="row">
           <div class="col-md-6">
-            <input type="text" class="form-control mb-4" placeholder="Name" name="name" id="name">
+            <input type="text" class="form-control mb-4" placeholder="Name" name="name" id="name" required>
           </div>
           <div class="col-md-6">
-            <input type="email" class="form-control mb-4" placeholder="Email" name="email" id="email">
+            <input type="email" class="form-control mb-4" placeholder="Email" name="email" id="email" required>
           </div>
           <div class="col-12">
-            <input type="text" class="form-control mb-4" placeholder="Subject" name="subject" id="subject">
+            <input type="text" class="form-control mb-4" placeholder="Subject" name="subject" id="subject" required>
           </div>
           <div class="col-12">
             <textarea name="message" id="message" class="form-control mb-4" placeholder="Type You Message Here"
-              rows="5"></textarea>
+              rows="5" required></textarea>
           </div>
           <div class="col-12">
-            <button class="btn btn-primary btn-block" type="submit">Send</button>
+            <button class="btn btn-primary btn-block w-100" type="submit">Send</button>
           </div>
         </form>
       </div>
-      <div class="col-lg-6 text-md-right">
-        <img class="img-fluid" src="{{ .Params.Image | relURL }}" alt="">
+      {{ if .Params.Image }}
+      <div class="col-lg-5 text-md-end">
+        {{ partial "image.html" (dict "Src" .Params.image "Alt" .Title  "Class" "w-100") }}
       </div>
+      {{ end }}
     </div>
   </div>
 </section>
